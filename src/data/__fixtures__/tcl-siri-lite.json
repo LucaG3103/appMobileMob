@@ -1,0 +1,385 @@
+{
+ "et": {
+  "Siri": {
+   "ServiceDelivery": {
+    "ResponseTimestamp": "2026-10-13T09:33:19.040908229Z",
+    "EstimatedTimetableDelivery": [
+     {
+      "EstimatedJourneyVersionFrame": [
+       {
+        "EstimatedVehicleJourney": [
+         {
+          "RecordedAtTime": "2026-10-13T09:32:17.003082538Z",
+          "LineRef": {
+           "value": "ActIV:Line::C17:SYTRAL"
+          },
+          "DirectionRef": {
+           "value": "inbound"
+          },
+          "FramedVehicleJourneyRef": {
+           "DataFrameRef": {
+            "value": "ActIV:DataFrame::2026.10.13:LOC"
+           },
+           "DatedVehicleJourneyRef": "ActIV:VehicleJourney::917_C17B-003AM_00301016:LOC"
+          },
+          "Cancellation": false,
+          "JourneyPatternRef": {
+           "value": "ActIV:JourneyPattern::chouette_JourneyPattern_bfd03a3d-45e5-4dec-b3e1-a3cb8f039aa0_LOC:LOC"
+          },
+          "DestinationRef": {
+           "value": "ActIV:StopArea:SP:1505:SYTRAL"
+          },
+          "Monitored": true,
+          "DataSource": "TCL",
+          "EstimatedCalls": {
+           "EstimatedCall": [
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:2724:SYTRAL"
+             },
+             "Order": 17,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:30:18Z",
+             "ExpectedArrivalTime": "2026-10-13T09:33:00Z",
+             "AimedDepartureTime": "2026-10-13T09:30:00Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:3135:SYTRAL"
+             },
+             "Order": 18,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:31:00Z",
+             "ExpectedArrivalTime": "2026-10-13T09:33:42Z",
+             "AimedDepartureTime": "2026-10-13T09:31:00Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:32303:SYTRAL"
+             },
+             "Order": 19,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:32:59Z",
+             "ExpectedArrivalTime": "2026-10-13T09:35:41Z",
+             "AimedDepartureTime": "2026-10-13T09:33:00Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:227:SYTRAL"
+             },
+             "Order": 20,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:35:23Z",
+             "ExpectedArrivalTime": "2026-10-13T09:38:05Z",
+             "AimedDepartureTime": "2026-10-13T09:35:00Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:1505:SYTRAL"
+             },
+             "Order": 21,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:39:00Z",
+             "AimedDepartureTime": "2026-10-13T09:39:00Z"
+            }
+           ]
+          }
+         },
+         {
+          "RecordedAtTime": "2026-10-13T09:32:46.689519323Z",
+          "LineRef": {
+           "value": "ActIV:Line::A:SYTRAL"
+          },
+          "DirectionRef": {
+           "value": "outbound"
+          },
+          "FramedVehicleJourneyRef": {
+           "DataFrameRef": {
+            "value": "ActIV:DataFrame::2026.10.13:LOC"
+           },
+           "DatedVehicleJourneyRef": "ActIV:VehicleJourney::301_301A-080CN_01301035:LOC"
+          },
+          "Cancellation": false,
+          "JourneyPatternRef": {
+           "value": "ActIV:JourneyPattern::chouette_JourneyPattern_7afe3d32-864f-4ea2-bb8c-b6e0271f7858_LOC:LOC"
+          },
+          "DestinationRef": {
+           "value": "ActIV:StopArea:SP:36394:SYTRAL"
+          },
+          "Monitored": true,
+          "DataSource": "TCL",
+          "EstimatedCalls": {
+           "EstimatedCall": [
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:46058:SYTRAL"
+             },
+             "Order": 11,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:33:39Z",
+             "AimedDepartureTime": "2026-10-13T09:33:39Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:46059:SYTRAL"
+             },
+             "Order": 12,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:35:12Z",
+             "AimedDepartureTime": "2026-10-13T09:35:12Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:46060:SYTRAL"
+             },
+             "Order": 13,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:36:43Z",
+             "AimedDepartureTime": "2026-10-13T09:36:43Z"
+            },
+            {
+             "StopPointRef": {
+              "value": "ActIV:StopArea:SP:36394:SYTRAL"
+             },
+             "Order": 14,
+             "Cancellation": false,
+             "AimedArrivalTime": "2026-10-13T09:38:11Z",
+             "AimedDepartureTime": "2026-10-13T09:38:11Z"
+            }
+           ]
+          }
+         }
+        ]
+       }
+      ],
+      "version": "2.0"
+     }
+    ]
+   }
+  }
+ },
+ "vm": {
+  "Siri": {
+   "ServiceDelivery": {
+    "ResponseTimestamp": "2026-10-13T09:33:20.530568343Z",
+    "VehicleMonitoringDelivery": [
+     {
+      "VehicleActivity": [
+       {
+        "ValidUntilTime": "2026-10-13T09:34:06.5945346Z",
+        "VehicleMonitoringRef": {
+         "value": "ActIV:Vehicle:Bus:3151:LOC"
+        },
+        "MonitoredVehicleJourney": {
+         "LineRef": {
+          "value": "ActIV:Line::C17:SYTRAL"
+         },
+         "DirectionRef": {
+          "value": "inbound"
+         },
+         "FramedVehicleJourneyRef": {
+          "DataFrameRef": {
+           "value": "ActIV:DataFrame::2026.10.13:LOC"
+          },
+          "DatedVehicleJourneyRef": "ActIV:VehicleJourney::917_C17B-003AM_00301016:LOC"
+         },
+         "DestinationRef": {
+          "value": "ActIV:StopArea:SP:1505:SYTRAL"
+         },
+         "DataSource": "TCL",
+         "VehicleLocation": {
+          "Longitude": 4.91403,
+          "Latitude": 45.75271
+         },
+         "Bearing": 338,
+         "Delay": "PT2M46S",
+         "VehicleStatus": "IN_PROGRESS",
+         "VehicleRef": {
+          "value": "ActIV:Vehicle:Bus:3151:LOC"
+         },
+         "PreviousCalls": {},
+         "MonitoredCall": {
+          "AimedArrivalTime": "2026-10-13T09:28:46Z",
+          "ActualArrivalTime": "0001-01-01T00:00:00Z",
+          "ArrivalStatus": "ON_TIME",
+          "AimedDepartureTime": "2026-10-13T09:29:00Z",
+          "ActualDepartureTime": "0001-01-01T00:00:00Z",
+          "DepartureStatus": "ON_TIME",
+          "StopPointRef": {
+           "value": "ActIV:StopArea:SP:10092:SYTRAL"
+          },
+          "Order": 16
+         },
+         "OnwardCalls": {}
+        },
+        "RecordedAtTime": "2026-10-13T09:33:06.5945346Z"
+       }
+      ],
+      "version": "2.0"
+     }
+    ]
+   }
+  }
+ },
+ "sx": {
+  "Siri": {
+   "ServiceDelivery": {
+    "ResponseTimestamp": "2026-10-13T09:33:21.53966051Z",
+    "SituationExchangeDelivery": [
+     {
+      "Situations": {
+       "PtSituationElement": [
+        {
+         "ValidityPeriod": [
+          {
+           "StartTime": "2026-10-06T04:00:00Z",
+           "EndTime": "2026-10-23T18:30:00Z"
+          }
+         ],
+         "MiscellaneousReason": "UNKNOWN",
+         "ReportType": "incident",
+         "Keywords": [
+          "Perturbation"
+         ],
+         "Description": [
+          {
+           "value": "Déviée dir. Tarare Hauts de Tarare -"
+          }
+         ],
+         "Internal": {
+          "value": "OPDATA"
+         },
+         "Consequences": {
+          "Consequence": [
+           {
+            "Affects": {
+             "Networks": {
+              "AffectedNetwork": [
+               {
+                "NetworkRef": {
+                 "value": "ActIV:Operator::TD1:SYTRAL"
+                },
+                "WaterSubmode": "UNKNOWN",
+                "TramSubmode": "UNKNOWN",
+                "RailSubmode": "UNKNOWN",
+                "MetroSubmode": "UNKNOWN",
+                "CoachSubmode": "UNKNOWN",
+                "BusSubmode": "UNKNOWN",
+                "AirSubmode": "UNKNOWN",
+                "AffectedLine": [
+                 {
+                  "LineRef": {
+                   "value": "ActIV:Line::164:SYTRAL"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             "StopPoints": {}
+            }
+           }
+          ]
+         },
+         "CreationTime": "2026-10-13T07:11:21.6729015Z",
+         "ParticipantRef": {
+          "value": "TCL"
+         },
+         "SituationNumber": {
+          "value": "ACTIV_2981450159662083503_2"
+         },
+         "Version": {
+          "value": 1
+         },
+         "References": {
+          "RelatedToRef": [
+           {
+            "CreationTime": "2026-10-06T04:00:00Z",
+            "SituationNumber": {
+             "value": "83727"
+            }
+           }
+          ]
+         }
+        },
+        {
+         "ValidityPeriod": [
+          {
+           "StartTime": "2026-09-03T08:10:01.9524212Z",
+           "EndTime": "2026-12-31T20:00:00Z"
+          }
+         ],
+         "MiscellaneousReason": "UNKNOWN",
+         "ReportType": "incident",
+         "Keywords": [
+          "Perturbation"
+         ],
+         "Description": [
+          {
+           "value": "Déviée deux sens -"
+          }
+         ],
+         "Internal": {
+          "value": "OPDATA"
+         },
+         "Consequences": {
+          "Consequence": [
+           {
+            "Affects": {
+             "Networks": {
+              "AffectedNetwork": [
+               {
+                "NetworkRef": {
+                 "value": "ActIV:Operator::TDVSS:SYTRAL"
+                },
+                "WaterSubmode": "UNKNOWN",
+                "TramSubmode": "UNKNOWN",
+                "RailSubmode": "UNKNOWN",
+                "MetroSubmode": "UNKNOWN",
+                "CoachSubmode": "UNKNOWN",
+                "BusSubmode": "UNKNOWN",
+                "AirSubmode": "UNKNOWN",
+                "AffectedLine": [
+                 {
+                  "LineRef": {
+                   "value": "ActIV:Line::JD450:SYTRAL"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             "StopPoints": {}
+            }
+           }
+          ]
+         },
+         "CreationTime": "2026-10-13T07:11:21.6724449Z",
+         "ParticipantRef": {
+          "value": "TCL"
+         },
+         "SituationNumber": {
+          "value": "ACTIV_920768744308045062_2"
+         },
+         "Version": {
+          "value": 1
+         },
+         "References": {
+          "RelatedToRef": [
+           {
+            "CreationTime": "2026-09-03T08:07:00Z",
+            "SituationNumber": {
+             "value": "81325"
+            }
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  }
+ }
+}
