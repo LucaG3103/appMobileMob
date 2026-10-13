@@ -60,7 +60,7 @@ I dati vengono da [data.grandlyon.com](https://data.grandlyon.com) (licenza Mobi
    python3 scripts/build_lyon_static.py ~/Downloads/GTFS_TCL.ZIP
    ```
 
-Senza credenziali l'app usa le linee simulate. Il lettore SIRI Lite è scritto sullo standard ma non è ancora stato provato con una risposta reale di TCL: gli identificativi di fermate e linee potrebbero richiedere un aggiustamento.
+Senza credenziali l'app usa le linee simulate. Il lettore SIRI Lite è verificato su risposte reali di TCL (ottobre 2026, vedi `src/data/__fixtures__/`). Bus e tram T2, T3, T5, T6, T7 hanno orari in tempo reale e posizione GPS; metro, funicolari e tram T1 e T4 pubblicano solo l'orario programmato, senza posizione.
 
 In metropolitana non c'è GPS: l'app capisce che sei salito quando il treno lascia la fermata e tu non sei più lì, e ti avvisa di scendere in base all'orario previsto di arrivo alla fermata prima della tua.
 
