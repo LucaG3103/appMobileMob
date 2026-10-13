@@ -49,9 +49,10 @@ describe('SIRI Lite', () => {
         journeyId: 'TCL:VehicleJourney::123:LOC',
         lineRef: 'TCL:Line::C3:',
         destinationName: 'Laurent Bonnevay',
+        destinationStopCode: undefined,
         calls: [
-          { stopCode: '30210', order: 7, etaSeconds: 90 },
-          { stopCode: '30211', order: 8, etaSeconds: 200 },
+          { stopCode: '30210', order: 7, etaSeconds: 90, realtime: true },
+          { stopCode: '30211', order: 8, etaSeconds: 200, realtime: true },
         ],
       },
     ]);
@@ -112,8 +113,8 @@ describe('SIRI Lite', () => {
         },
       },
     };
-    expect(alertsFromSituationExchange(sx)).toEqual([
-      { id: 'S1', header: 'Travaux', description: undefined, routeIds: ['TCL:Line::C3:'], stopIds: ['30210'] },
+    expect(alertsFromSituationExchange(sx, NOW)).toEqual([
+      { id: 'S1', header: 'Travaux', description: undefined, routeIds: ['C3'], stopIds: ['30210'] },
     ]);
   });
 });

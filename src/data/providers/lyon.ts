@@ -4,6 +4,7 @@ import type { TransitProvider } from '../provider';
 import {
   alertsFromSituationExchange,
   journeysFromEstimatedTimetables,
+  lineCode,
   vehiclesFromMonitoring,
   type SiriJourney,
 } from '../siriLite';
@@ -22,11 +23,15 @@ const stops = stopsJson as Stop[];
 const lines = linesJson as Record<string, { shortName: string; color: string }>;
 const stopById = new Map(stops.map((s) => [s.id, s]));
 
-/** "TCL:Line::C3:" -> "C3", then the GTFS short name if we have one. */
-function lineName(lineRef: string): { routeId: string; routeShortName: string } {
-  const parts = lineRef.split(':').filter(Boolean);
-  const routeId = parts.at(-1) ?? lineRef;
+/** "ActIV:Line::2001:SYTRAL" -> route_id "2001", shown as its GTFS short name "217". */
+export function lineName(lineRef: string): { routeId: string; routeShortName: string } {
+  const routeId = lineCode(lineRef);
   return { routeId, routeShortName: lines[routeId]?.shortName ?? routeId };
+}
+
+/** TCL sends no DestinationName: name the headsign after the terminus stop. */
+export function headsign(j: SiriJourney): string {
+  return j.destinationName ?? (j.destinationStopCode ? stopById.get(j.destinationStopCode)?.name : undefined) ?? '';
 }
 
 export interface LyonCredentials {
@@ -83,10 +88,10 @@ export function createLyonProvider(creds: LyonCredentials): TransitProvider {
         if (!call || call.etaSeconds < 0) continue;
         out.push({
           ...lineName(j.lineRef),
-          headsign: j.destinationName ?? '',
+          headsign: headsign(j),
           tripId: j.journeyId,
           etaSeconds: call.etaSeconds,
-          realtime: true,
+          realtime: call.realtime,
         });
       }
       return out.sort((a, b) => a.etaSeconds - b.etaSeconds);
@@ -113,10 +118,10 @@ export function createLyonProvider(creds: LyonCredentials): TransitProvider {
     },
 
     async alerts({ routeId, stopId }) {
-      const all = alertsFromSituationExchange(await get('situation-exchange.json'));
+      const all = alertsFromSituationExchange(await get('situation-exchange.json'), Date.now());
       return all.filter(
         (a) =>
-          (!routeId || a.routeIds.some((r) => lineName(r).routeId === routeId)) &&
+          (!routeId || a.routeIds.includes(routeId)) &&
           (!stopId || a.stopIds.length === 0 || a.stopIds.includes(stopId)),
       );
     },
