@@ -19,6 +19,8 @@ Il nome è provvisorio.
 
 Le notifiche sono locali, senza server. Apple Watch e Wear OS le ricevono automaticamente dal telefono.
 
+**Amazfit (Zepp OS, es. Active 2):** nell'app Zepp, in Profilo → orologio → Notifiche app, abilita "Fermata Giusta". Su Android escludi sia Zepp sia questa app dall'ottimizzazione batteria, altrimenti il sistema può ritardare le notifiche.
+
 ## Struttura
 
 | Percorso | Cosa contiene |
