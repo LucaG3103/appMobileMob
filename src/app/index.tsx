@@ -9,7 +9,7 @@ import { loadFavorites, loadTrip, type FavoriteStop, type StoredTrip } from '../
 import { colors, s } from '../ui';
 
 export default function NearbyStops() {
-  const { provider, ref, userLocation } = useTransit();
+  const { provider, ref, userLocation, center } = useTransit();
   const [favorites, setFavorites] = useState<FavoriteStop[]>([]);
   const [active, setActive] = useState<StoredTrip | null>(null);
 
@@ -20,8 +20,8 @@ export default function NearbyStops() {
     }, []),
   );
 
-  const stops = usePolling(() => provider.nearbyStops(userLocation ?? ref.center, 800), 30_000, [provider]) ?? [];
-  const here = userLocation ?? ref.center;
+  const stops = usePolling(() => provider.nearbyStops(center, 800), 30_000, [provider]) ?? [];
+  const here = center;
 
   const open = (stop: Pick<Stop, 'id' | 'name'>) =>
     router.push({ pathname: '/stop/[id]', params: { id: stop.id, name: stop.name } });

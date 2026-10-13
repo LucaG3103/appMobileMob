@@ -10,7 +10,7 @@ import { colors, formatEta, occupancyLabel, s } from '../../ui';
 
 export default function StopArrivals() {
   const { id, name } = useLocalSearchParams<{ id: string; name: string }>();
-  const { provider, ref, userLocation } = useTransit();
+  const { provider, ref, userLocation, center } = useTransit();
   const [isFav, setIsFav] = useState(false);
   const [picking, setPicking] = useState<{ arrival: Arrival; stops: TripStop[] } | null>(null);
 
@@ -20,7 +20,7 @@ export default function StopArrivals() {
 
   const arrivals = usePolling(() => provider.arrivals(id), 15_000, [provider, id]) ?? [];
   const alerts = usePolling(() => provider.alerts({ stopId: id }), 120_000, [provider, id]) ?? [];
-  const stop = usePolling(async () => (await provider.nearbyStops(ref.center, 50_000)).find((x) => x.id === id), 600_000, [id]);
+  const stop = usePolling(async () => (await provider.nearbyStops(center, 50_000)).find((x) => x.id === id), 600_000, [id]);
   const walk = stop && userLocation ? walkingSeconds(userLocation, stop) : null;
 
   async function choose(a: Arrival) {

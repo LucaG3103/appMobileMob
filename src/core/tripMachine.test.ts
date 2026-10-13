@@ -96,6 +96,22 @@ describe('advanceTrip', () => {
     expect(r.events).toContainEqual({ type: 'prepare_to_alight', stopsLeft: 1 });
   });
 
+  it('alerts from the predicted arrival when there is no GPS (metro)', () => {
+    const v: VehicleState = { tripId: 'T1', position: at(stops[1]), etaByStopId: { S3: 60 }, timestamp: 0 };
+    let r = advanceTrip(trip({ phase: 'onboard' }), { now: 0, user: null, vehicle: v });
+    expect(r.events).toEqual([]);
+    r = advanceTrip(r.trip, { now: 1, user: null, vehicle: { ...v, etaByStopId: { S3: 10 } } });
+    expect(r.events).toEqual([{ type: 'prepare_to_alight', stopsLeft: 1 }]);
+  });
+
+  it('assumes boarding when a vehicle without GPS leaves and the user is gone from the stop', () => {
+    const v: VehicleState = { tripId: 'T1', etaByStopId: { S1: -60 }, timestamp: 0 };
+    const away = advanceTrip(trip(), { now: 0, user: null, vehicle: v });
+    expect(away.events).toContainEqual({ type: 'boarded' });
+    const stayed = advanceTrip(trip(), { now: 0, user: at(stops[0]), vehicle: v });
+    expect(stayed.events).toEqual([{ type: 'missed' }]);
+  });
+
   it('alerts immediately on boarding when the destination is the next stop', () => {
     const t = trip({ stops: [stops[0], stops[1]] });
     const p = at(stops[0], 0.0015);

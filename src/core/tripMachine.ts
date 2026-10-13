@@ -59,6 +59,8 @@ export const LEFT_STOP_RADIUS_M = 100;
 export const BOARD_HITS_REQUIRED = 2;
 /** Being this close to a stop counts as being at it. */
 export const AT_STOP_RADIUS_M = 80;
+/** Vehicle predicted this close to a stop counts as being at it. */
+export const AT_STOP_ETA_SECONDS = 20;
 /** Vehicle ETA below this (it already left) while user is still at the stop = missed. */
 const MISSED_AFTER_SECONDS = -45;
 
@@ -101,22 +103,26 @@ export function advanceTrip(trip: ActiveTrip, s: TripSample): { trip: ActiveTrip
       events.push({ type: 'approaching', etaSeconds: eta });
     }
 
-    if (s.user && s.vehicle) {
-      const withVehicle = distanceMeters(s.user, s.vehicle.position) <= BOARD_RADIUS_M;
+    const vehiclePos = s.vehicle?.position;
+    const userAtStop = s.user !== null && distanceMeters(s.user, boardStop(next)) <= AT_STOP_RADIUS_M;
+    const vehicleLeft = eta !== undefined && eta < MISSED_AFTER_SECONDS;
+
+    if (s.user && vehiclePos) {
+      const withVehicle = distanceMeters(s.user, vehiclePos) <= BOARD_RADIUS_M;
       const leftStop = distanceMeters(s.user, boardStop(next)) >= LEFT_STOP_RADIUS_M;
       next.boardingHits = withVehicle && leftStop ? next.boardingHits + 1 : 0;
+    }
 
-      if (next.boardingHits >= BOARD_HITS_REQUIRED) {
-        next.phase = 'onboard';
-        events.push({ type: 'boarded' });
-      } else if (
-        eta !== undefined &&
-        eta < MISSED_AFTER_SECONDS &&
-        distanceMeters(s.user, boardStop(next)) <= AT_STOP_RADIUS_M
-      ) {
-        // Vehicle left without the user: caller should re-target the next vehicle.
-        events.push({ type: 'missed' });
-      }
+    if (next.boardingHits >= BOARD_HITS_REQUIRED) {
+      next.phase = 'onboard';
+      events.push({ type: 'boarded' });
+    } else if (vehicleLeft && userAtStop) {
+      // Vehicle left without the user: caller should re-target the next vehicle.
+      events.push({ type: 'missed' });
+    } else if (vehicleLeft && !vehiclePos) {
+      // No vehicle GPS (metro): it left and the user is not at the stop, so assume they are on it.
+      next.phase = 'onboard';
+      events.push({ type: 'boarded' });
     }
   }
 
@@ -126,10 +132,13 @@ export function advanceTrip(trip: ActiveTrip, s: TripSample): { trip: ActiveTrip
     const userAtTarget = s.user !== null && distanceMeters(s.user, target) <= AT_STOP_RADIUS_M;
     const vehiclePastTarget =
       s.vehicle?.currentStopSequence !== undefined && s.vehicle.currentStopSequence > target.sequence;
+    // Predicted time works without GPS (metro tunnels, phone deep in a bag).
+    const targetEta = s.vehicle?.etaByStopId[target.id];
+    const vehicleAtTarget = targetEta !== undefined && targetEta <= AT_STOP_ETA_SECONDS;
     // If the destination is the very next stop after boarding, alert right away.
     const immediate = target.id === boardStop(next).id;
 
-    if (userAtTarget || vehiclePastTarget || immediate) {
+    if (userAtTarget || vehiclePastTarget || vehicleAtTarget || immediate) {
       next.phase = 'alerted';
       events.push({ type: 'prepare_to_alight', stopsLeft });
     }

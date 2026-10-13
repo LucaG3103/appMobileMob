@@ -2,15 +2,17 @@ import * as Location from 'expo-location';
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { LatLng } from '../core/types';
 import type { TransitProvider } from '../data/provider';
-import { getProvider, type ProviderRef } from '../data/registry';
+import { getProvider, lyonAvailable, type ProviderRef } from '../data/registry';
 
-/** Fallback when location is denied: Roma Termini. */
-const DEFAULT_CENTER: LatLng = { latitude: 41.9009, longitude: 12.5018 };
+/** Fallback when location is denied: Lyon Part-Dieu. */
+const DEFAULT_CENTER: LatLng = { latitude: 45.7606, longitude: 4.8594 };
 
 interface TransitCtx {
   ref: ProviderRef;
   provider: TransitProvider;
   userLocation: LatLng | null;
+  /** User position, or a default in the city when unknown. */
+  center: LatLng;
 }
 
 const Ctx = createContext<TransitCtx | null>(null);
@@ -37,8 +39,9 @@ export function TransitProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(() => {
-    const ref: ProviderRef = { id: 'demo', center };
-    return { ref, provider: getProvider(ref), userLocation };
+    // Real TCL data when credentials are configured, simulated lines otherwise.
+    const ref: ProviderRef = lyonAvailable() ? { id: 'lyon' } : { id: 'demo', center };
+    return { ref, provider: getProvider(ref), userLocation, center: userLocation ?? center };
   }, [center, userLocation]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

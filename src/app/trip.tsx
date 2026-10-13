@@ -62,7 +62,7 @@ export default function TripScreen() {
         {trip.stops.map((st) => (
           <Marker key={st.id} coordinate={st} title={st.name} pinColor={st.id === destinationStop(trip).id ? colors.danger : colors.accent} />
         ))}
-        {vehicle && <Marker coordinate={vehicle.position} title={trip.routeShortName} pinColor={colors.live} />}
+        {vehicle?.position && <Marker coordinate={vehicle.position} title={trip.routeShortName} pinColor={colors.live} />}
       </MapView>
 
       <View style={s.row}>

@@ -32,7 +32,8 @@ export type Occupancy = 'empty' | 'many_seats' | 'few_seats' | 'standing' | 'ful
 export interface VehicleState {
   tripId: string;
   vehicleId?: string;
-  position: LatLng;
+  /** Missing when only predictions are published (e.g. metro). */
+  position?: LatLng;
   /** stop_sequence of the stop the vehicle is at or heading to. */
   currentStopSequence?: number;
   /** Predicted seconds until the vehicle reaches each stop of its trip, by stop id. */

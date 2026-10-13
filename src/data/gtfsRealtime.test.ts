@@ -49,7 +49,7 @@ describe('GTFS-Realtime decoding', () => {
       occupancy: 'standing',
       etaByStopId: { S5: 90, S6: 200 },
     });
-    expect(v?.position.latitude).toBeCloseTo(41.9, 4);
+    expect(v?.position?.latitude).toBeCloseTo(41.9, 4);
   });
 
   it('prefers the Italian translation of alerts', () => {
